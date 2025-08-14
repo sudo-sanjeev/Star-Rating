@@ -1,1 +1,15 @@
-node_modules
+# Dependencies
+node_modules/
+package-lock.json
+
+# Production build
+build/
+
+# Environment variables
+.env
+
+# OS generated files
+.DS_Store
+
+# Logs
+*.log
