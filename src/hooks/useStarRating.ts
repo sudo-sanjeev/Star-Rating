@@ -3,10 +3,11 @@ import { useState } from 'react';
 interface UseStarRatingProps {
   defaultValue: number;
   disabled: boolean;
+  allowHalfRating?: boolean;
   onChange?: (rating: number) => void;
 }
 
-export const useStarRating = ({ defaultValue, disabled, onChange }: UseStarRatingProps) => {
+export const useStarRating = ({ defaultValue, disabled, allowHalfRating = false, onChange }: UseStarRatingProps) => {
   const [selected, setSelected] = useState<number>(defaultValue);
   const [hovered, setHovered] = useState<number | null>(null);
 
@@ -23,6 +24,12 @@ export const useStarRating = ({ defaultValue, disabled, onChange }: UseStarRatin
     }
   };
 
+  const handleHalfMouseEnter = (rating: number): void => {
+    if (!disabled && allowHalfRating) {
+      setHovered(rating - 0.5);
+    }
+  };
+
   const handleMouseLeave = (): void => {
     if (!disabled) {
       setHovered(null);
@@ -30,7 +37,14 @@ export const useStarRating = ({ defaultValue, disabled, onChange }: UseStarRatin
   };
 
   const isStarFilled = (value: number): boolean => {
-    return hovered !== null ? value <= hovered : value <= selected;
+    const currentRating = hovered !== null ? hovered : selected;
+    return currentRating >= value;
+  };
+
+  const isStarHalfFilled = (value: number): boolean => {
+    if (!allowHalfRating) return false;
+    const currentRating = hovered !== null ? hovered : selected;
+    return currentRating >= value - 0.5 && currentRating < value;
   };
 
   return {
@@ -38,7 +52,9 @@ export const useStarRating = ({ defaultValue, disabled, onChange }: UseStarRatin
     hovered,
     handleClick,
     handleMouseEnter,
+    handleHalfMouseEnter,
     handleMouseLeave,
     isStarFilled,
+    isStarHalfFilled,
   };
 };

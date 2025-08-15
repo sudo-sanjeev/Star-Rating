@@ -2,6 +2,7 @@ export interface StarRatingConfig {
   totalStars?: number;
   defaultValue?: number;
   disabled?: boolean;
+  allowHalfRating?: boolean;
 }
 
 export interface StarRatingStyle {
@@ -19,11 +20,13 @@ export interface StarRatingProps {
 export interface StarProps {
   value: number;
   isFilled: boolean;
-  size: number;
-  filledColor: string;
-  emptyColor: string;
+  isHalfFilled?: boolean;
   disabled: boolean;
+  allowHalfRating?: boolean;
+  starClassName: string;
+  starStyle: React.CSSProperties;
   onHover: (value: number) => void;
+  onHalfHover?: (value: number) => void;
   onLeave: () => void;
   onClick: (value: number) => void;
 }

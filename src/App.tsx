@@ -9,6 +9,7 @@ const App: React.FC = () => {
 
   return (
     <div style={{ padding: 20 }}>
+      <h2>Regular Star Rating</h2>
       <StarRating
         config={{
           totalStars: 5,
@@ -16,7 +17,22 @@ const App: React.FC = () => {
         }}
         style={{
           size: 40,
-          filledColor: "red",
+          filledColor: "gold",
+        }}
+        onChange={handleRatingChange}
+      />
+      
+      <h2>Half Star Rating Enabled</h2>
+      <StarRating
+        config={{
+          totalStars: 5,
+          defaultValue: 2.5,
+          allowHalfRating: true,
+        }}
+        style={{
+          size: 40,
+          filledColor: "gold",
+          emptyColor: "lightgray",
         }}
         onChange={handleRatingChange}
       />

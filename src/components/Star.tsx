@@ -5,11 +5,13 @@ import styles from './Star.module.css';
 export const Star: React.FC<StarProps> = ({
   value,
   isFilled,
-  size,
-  filledColor,
-  emptyColor,
+  isHalfFilled = false,
   disabled,
+  allowHalfRating = false,
+  starClassName,
+  starStyle,
   onHover,
+  onHalfHover,
   onLeave,
   onClick,
 }) => {
@@ -20,12 +22,48 @@ export const Star: React.FC<StarProps> = ({
     }
   };
 
-  const starClassName = `${styles.star} ${disabled ? styles.disabled : ''}`;
-  
-  const starStyle = {
-    '--star-color': isFilled ? filledColor : emptyColor,
-    '--star-size': `${size}px`,
-  } as React.CSSProperties;
+  const handleHalfKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      onClick(value - 0.5);
+    }
+  };
+
+  // Style computation now handled by parent component
+
+  if (allowHalfRating && !disabled) {
+    return (
+      <span
+        className={starClassName}
+        style={starStyle}
+        onMouseLeave={onLeave}
+        role="button"
+        tabIndex={-1}
+        aria-label={`Rate ${value} star${value !== 1 ? 's' : ''}`}
+        aria-pressed={isFilled}
+      >
+        <span
+          className={styles.leftHalf}
+          onMouseEnter={() => onHalfHover?.(value)}
+          onClick={() => onClick(value - 0.5)}
+          onKeyDown={handleHalfKeyDown}
+          role="button"
+          tabIndex={0}
+          aria-label={`Rate ${value - 0.5} stars`}
+        />
+        <span
+          className={styles.rightHalf}
+          onMouseEnter={() => onHover(value)}
+          onClick={() => onClick(value)}
+          onKeyDown={handleKeyDown}
+          role="button"
+          tabIndex={0}
+          aria-label={`Rate ${value} star${value !== 1 ? 's' : ''}`}
+        />
+        ★
+      </span>
+    );
+  }
 
   return (
     <span

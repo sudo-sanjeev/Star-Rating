@@ -5,4 +5,5 @@ export const DEFAULT_CONFIG = {
   FILLED_COLOR: 'gold',
   EMPTY_COLOR: 'lightgray',
   DISABLED: false,
+  ALLOW_HALF_RATING: false,
 } as const;

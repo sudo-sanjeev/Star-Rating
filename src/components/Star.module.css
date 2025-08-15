@@ -4,6 +4,8 @@
   transition: color 0.2s ease;
   color: var(--star-color);
   font-size: var(--star-size);
+  position: relative;
+  display: inline-block;
 }
 
 .star:hover {
@@ -23,4 +25,42 @@
 
 .disabled:hover {
   transform: none;
+}
+
+.halfStar {
+  position: relative;
+  overflow: hidden;
+}
+
+.halfStar::before {
+  content: '★';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50%;
+  color: var(--filled-color);
+  overflow: hidden;
+  z-index: 1;
+}
+
+.halfClickable {
+  position: relative;
+}
+
+.leftHalf,
+.rightHalf {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.leftHalf {
+  left: 0;
+}
+
+.rightHalf {
+  right: 0;
 }
