@@ -8,3 +8,48 @@
   gap: 4px;
   align-items: center;
 }
+
+/* Demo App Styles */
+.demo-container {
+  padding: 40px;
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.demo-title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 50px;
+  font-size: 2.5em;
+}
+
+.demo-card {
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+}
+
+.demo-card:last-child {
+  margin-bottom: 0;
+}
+
+.demo-section-title {
+  color: #444;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+}
+
+.demo-rating-container {
+  margin-bottom: 15px;
+}
+
+.demo-rating-text {
+  color: #666;
+  font-size: 1.1em;
+  margin: 0;
+}

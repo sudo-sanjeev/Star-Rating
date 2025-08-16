@@ -15,38 +15,16 @@ const App: React.FC = () => {
   };
 
   return (
-    <div style={{ 
-      padding: 40, 
-      maxWidth: 600,
-      margin: '0 auto',
-      fontFamily: 'Arial, sans-serif',
-      backgroundColor: '#f8f9fa',
-      minHeight: '100vh'
-    }}>
-      <h1 style={{ 
-        textAlign: 'center', 
-        color: '#333', 
-        marginBottom: 50,
-        fontSize: '2.5em'
-      }}>
+    <div className="demo-container">
+      <h1 className="demo-title">
         ⭐ Star Rating Component
       </h1>
       
-      <div style={{ 
-        backgroundColor: 'white',
-        padding: 30,
-        borderRadius: 12,
-        boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
-        marginBottom: 30
-      }}>
-        <h2 style={{ 
-          color: '#444', 
-          marginBottom: 20,
-          fontSize: '1.5em'
-        }}>
+      <div className="demo-card">
+        <h2 className="demo-section-title">
           🌟 Basic Star Rating
         </h2>
-        <div style={{ marginBottom: 15 }}>
+        <div className="demo-rating-container">
           <StarRating
             config={{
               totalStars: 5,
@@ -60,29 +38,16 @@ const App: React.FC = () => {
             onChange={handleRatingChange1}
           />
         </div>
-        <p style={{ 
-          color: '#666', 
-          fontSize: '1.1em',
-          margin: 0
-        }}>
+        <p className="demo-rating-text">
           Current Rating: <strong>{rating1} stars</strong>
         </p>
       </div>
       
-      <div style={{ 
-        backgroundColor: 'white',
-        padding: 30,
-        borderRadius: 12,
-        boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
-      }}>
-        <h2 style={{ 
-          color: '#444', 
-          marginBottom: 20,
-          fontSize: '1.5em'
-        }}>
+      <div className="demo-card">
+        <h2 className="demo-section-title">
           🌟 Half Star Rating
         </h2>
-        <div style={{ marginBottom: 15 }}>
+        <div className="demo-rating-container">
           <StarRating
             config={{
               totalStars: 5,
@@ -97,11 +62,7 @@ const App: React.FC = () => {
             onChange={handleRatingChange2}
           />
         </div>
-        <p style={{ 
-          color: '#666', 
-          fontSize: '1.1em',
-          margin: 0
-        }}>
+        <p className="demo-rating-text">
           Current Rating: <strong>{rating2} stars</strong>
         </p>
       </div>
