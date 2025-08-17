@@ -1,0 +1,1 @@
+export { useStarRating } from './useStarRating';

@@ -1,9 +1,9 @@
 import React from 'react';
-import { StarRatingProps } from '../types';
-import { DEFAULT_CONFIG } from '../constants';
-import { useStarRating } from '../hooks/useStarRating';
-import { Star } from './Star';
-import { getStarStyle } from '../utils/starUtils';
+import { StarRatingProps } from './types';
+import { DEFAULT_CONFIG } from '../../constants';
+import { useStarRating } from '../../hooks/useStarRating';
+import { Star } from '../Star';
+import { getStarStyle } from './utils/starUtils';
 
 export const StarRating: React.FC<StarRatingProps> = ({
   config = {},
@@ -21,7 +21,7 @@ export const StarRating: React.FC<StarRatingProps> = ({
     handleMouseEnter,
     handleMouseLeave,
     getStarState,
-  } = useStarRating({ defaultValue, allowHalfRating: enableHalfRating, onChange });
+  } = useStarRating({ defaultValue, onChange });
 
   return (
     <div className="container" role="radiogroup" aria-label="Star rating">

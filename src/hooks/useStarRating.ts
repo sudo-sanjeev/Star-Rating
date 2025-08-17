@@ -1,13 +1,12 @@
 import { useState } from 'react';
-import { StarState } from '../utils/starUtils';
+import { StarState } from '../components/StarRating/types';
 
 interface UseStarRatingProps {
   defaultValue: number;
-  allowHalfRating?: boolean;
   onChange?: (rating: number) => void;
 }
 
-export const useStarRating = ({ defaultValue, allowHalfRating = false, onChange }: UseStarRatingProps) => {
+export const useStarRating = ({ defaultValue, onChange }: UseStarRatingProps) => {
   const [selected, setSelected] = useState<number>(defaultValue);
   const [hovered, setHovered] = useState<number | null>(null);
 
@@ -26,12 +25,8 @@ export const useStarRating = ({ defaultValue, allowHalfRating = false, onChange 
 
   const getStarState = (value: number): StarState => {
     const currentRating = hovered !== null ? hovered : selected;
-    if (currentRating >= value) {
-      return 'full';
-    }
-    if (allowHalfRating && currentRating >= value - 0.5) {
-      return 'half';
-    }
+    if (currentRating >= value) return 'full';
+    if (currentRating === value - 0.5) return 'half';
     return 'empty';
   };
 

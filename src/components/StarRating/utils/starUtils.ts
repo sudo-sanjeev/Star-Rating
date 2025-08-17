@@ -1,7 +1,6 @@
-import { DEFAULT_CONFIG } from '../constants';
+import { DEFAULT_CONFIG } from '../../../constants';
 import { StarRatingStyle } from '../types';
-
-export type StarState = 'empty' | 'half' | 'full';
+import { StarState } from '../types';
 
 export const getStarStyle = (
   state: StarState, 

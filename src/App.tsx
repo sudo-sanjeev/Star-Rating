@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./styles.css";
-import { StarRating } from "./components/StarRating";
+import { StarRating } from "./components";
 
 const App: React.FC = () => {
   const [rating1, setRating1] = useState(0);

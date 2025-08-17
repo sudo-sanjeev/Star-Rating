@@ -1,11 +1,11 @@
 import React from 'react';
-import { StarProps } from '../types';
+import { StarProps } from './types';
 import styles from './Star.module.css';
 
 export const Star: React.FC<StarProps> = ({
   value,
   starState,
-  enableHalfRating = false,
+  enableHalfRating,
   starStyle,
   onHover,
   onLeave,
@@ -19,15 +19,14 @@ export const Star: React.FC<StarProps> = ({
     }
   };
   
-
-  if (enableHalfRating) {
-    // Apply half star class only when star state is 'half'
-    const starCssClasses = starState === 'half'
+  const starClasses = starState === 'half'
     ? `${styles.star} ${styles.halfStar}` 
     : styles.star;
+    
+  if (enableHalfRating) {
     return (
       <span
-        className={starCssClasses}
+        className={starClasses}
         style={starStyle}
         onMouseLeave={onLeave}
         role="button"
@@ -60,7 +59,7 @@ export const Star: React.FC<StarProps> = ({
 
   return (
     <span
-      className={styles.star}
+      className={starClasses}
       style={starStyle}
       onMouseEnter={() => onHover(value)}
       onMouseLeave={onLeave}
