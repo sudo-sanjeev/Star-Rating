@@ -12,15 +12,6 @@
   transform: scale(1.1);
 }
 
-.disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-
-.disabled:hover {
-  transform: none;
-}
-
 .halfStar {
   position: relative;
   overflow: hidden;
@@ -35,10 +26,6 @@
   color: var(--filled-color);
   overflow: hidden;
   z-index: 1;
-}
-
-.halfClickable {
-  position: relative;
 }
 
 .leftHalf,
@@ -58,4 +45,3 @@
 .rightHalf {
   right: 0;
 }
-

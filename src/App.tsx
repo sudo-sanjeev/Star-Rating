@@ -52,7 +52,7 @@ const App: React.FC = () => {
             config={{
               totalStars: 5,
               defaultValue: rating2,
-              allowHalfRating: true,
+              enableHalfRating: true,
             }}
             style={{
               size: 50,

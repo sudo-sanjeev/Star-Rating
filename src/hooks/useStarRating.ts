@@ -1,50 +1,38 @@
 import { useState } from 'react';
+import { StarState } from '../utils/starUtils';
 
 interface UseStarRatingProps {
   defaultValue: number;
-  disabled: boolean;
   allowHalfRating?: boolean;
   onChange?: (rating: number) => void;
 }
 
-export const useStarRating = ({ defaultValue, disabled, allowHalfRating = false, onChange }: UseStarRatingProps) => {
+export const useStarRating = ({ defaultValue, allowHalfRating = false, onChange }: UseStarRatingProps) => {
   const [selected, setSelected] = useState<number>(defaultValue);
   const [hovered, setHovered] = useState<number | null>(null);
 
   const handleClick = (rating: number): void => {
-    if (disabled) return;
-    
     setSelected(rating);
     onChange?.(rating);
   };
 
   const handleMouseEnter = (rating: number): void => {
-    if (!disabled) {
-      setHovered(rating);
-    }
-  };
-
-  const handleHalfMouseEnter = (rating: number): void => {
-    if (!disabled && allowHalfRating) {
-      setHovered(rating - 0.5);
-    }
+    setHovered(rating);
   };
 
   const handleMouseLeave = (): void => {
-    if (!disabled) {
-      setHovered(null);
+    setHovered(null);
+  };
+
+  const getStarState = (value: number): StarState => {
+    const currentRating = hovered !== null ? hovered : selected;
+    if (currentRating >= value) {
+      return 'full';
     }
-  };
-
-  const isStarFilled = (value: number): boolean => {
-    const currentRating = hovered !== null ? hovered : selected;
-    return currentRating >= value;
-  };
-
-  const isStarHalfFilled = (value: number): boolean => {
-    if (!allowHalfRating) return false;
-    const currentRating = hovered !== null ? hovered : selected;
-    return currentRating >= value - 0.5 && currentRating < value;
+    if (allowHalfRating && currentRating >= value - 0.5) {
+      return 'half';
+    }
+    return 'empty';
   };
 
   return {
@@ -52,9 +40,7 @@ export const useStarRating = ({ defaultValue, disabled, allowHalfRating = false,
     hovered,
     handleClick,
     handleMouseEnter,
-    handleHalfMouseEnter,
     handleMouseLeave,
-    isStarFilled,
-    isStarHalfFilled,
+    getStarState,
   };
 };

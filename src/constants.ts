@@ -4,6 +4,5 @@ export const DEFAULT_CONFIG = {
   SIZE: 32,
   FILLED_COLOR: 'gold',
   EMPTY_COLOR: 'lightgray',
-  DISABLED: false,
-  ALLOW_HALF_RATING: false,
+  ENABLE_HALF_RATING: false,
 } as const;
